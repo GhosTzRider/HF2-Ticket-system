@@ -35,3 +35,11 @@ VALUES
 ('In Progress'),
 ('Resolved'),
 ('Closed');
+
+INSERT INTO supporters (first_name, last_name, email)
+VALUES
+('Oliver', 'Munkebo', 'oliver@support.dk'),
+('Mads','Kerteminde','mads@support.dk'),
+('Nico','Haarby','nico@support.dk'),
+('Noah','København','noah@support.dk'),
+('Frode','Korup','frode@support.dk');

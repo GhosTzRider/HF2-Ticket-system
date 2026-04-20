@@ -12,9 +12,26 @@ CREATE TABLE users (
     email VARCHAR(50) NOT NULL
 );
 
+CREATE TABLE supporters (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    first_name VARCHAR(10) NOT NULL,
+    last_name VARCHAR(10) NOT NULL,
+    email VARCHAR(50) NOT NULL
+);
+
 CREATE TABLE categories (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     name VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE acticles (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    title VARCHAR(50) NOT NULL,
+    content TEXT NOT NULL,
+    category_id INT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (category_id) REFERENCES categories(Id)
 );
 
 CREATE TABLE services (
@@ -43,10 +60,12 @@ CREATE TABLE tickets (
     status_id INT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    supporter_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(Id),
     FOREIGN KEY (category_id) REFERENCES categories(Id),
     FOREIGN KEY (service_id) REFERENCES services(Id),
     FOREIGN KEY (priority_id) REFERENCES priorities(Id),
-    FOREIGN KEY (status_id) REFERENCES statuses(Id)
+    FOREIGN KEY (status_id) REFERENCES statuses(Id),
+    FOREIGN KEY (supporter_id) REFERENCES supporters(Id)
 );
 GO
