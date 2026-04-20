@@ -75,8 +75,15 @@ WSGI_APPLICATION = 'HF2_Ticket_system.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'mssql',
+        'NAME': 'Knowledge',
+        'HOST': 'DESKTOP-2M4VNAL\\TICKETSYSTEMDBS',
+        'USER': '',
+        'PASSWORD': '',
+        'OPTIONS': {
+            'driver': 'ODBC Driver 18 for SQL Server',
+            'extra_params': 'TrustServerCertificate=yes;',
+        }
     }
 }
 
