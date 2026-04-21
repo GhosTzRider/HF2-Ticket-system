@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ticket System</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="{% static 'TS/css/home.css' %}">
 </head>
 <body>
@@ -14,15 +14,69 @@
         <ul>
             <li><a href="/" class="active">Dashboard</a></li>
             <li><a href="/create/">Create Ticket</a></li>
-            <li><a href="/tech_knowledge/">Tech knowledge</a></li>
+            <li><a href="/tech_knowledge/">Tech Knowledge</a></li>
             <li><a href="/about/">About</a></li>
             <li><a href="/contact/">Contact</a></li>
         </ul>
     </nav>
 
     <main class="content">
-        <h1>Welcome to the Ticket System</h1>
-        <p>This is a ticket system built with Django.</p>
+        <h1>Dashboard</h1>
+        <p class="subtitle">Overview of all tickets</p>
+
+        <div class="stats-row">
+            <div class="stat-card">
+                <span class="stat-label">Total Tickets</span>
+                <span class="stat-number">{{ total_tickets }}</span>
+            </div>
+            <div class="stat-card open">
+                <span class="stat-label">Open</span>
+                <span class="stat-number">{{ open_tickets }}</span>
+            </div>
+            <div class="stat-card in-progress">
+                <span class="stat-label">In Progress</span>
+                <span class="stat-number">{{ in_progress_tickets }}</span>
+            </div>
+            <div class="stat-card closed">
+                <span class="stat-label">Closed</span>
+                <span class="stat-number">{{ closed_tickets }}</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2>Recent Tickets</h2>
+                <a href="/create/" class="btn-new">+ New Ticket</a>
+            </div>
+            <table class="ticket-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Created</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ticket in recent_tickets %}
+                    <tr class="clickable-row" onclick="window.location='/ticket/{{ ticket.id }}/'">
+                        <td>{{ ticket.id }}</td>
+                        <td>{{ ticket.title }}</td>
+                        <td>{{ ticket.category }}</td>
+                        <td><span class="badge priority-{{ ticket.priority.name|lower }}">{{ ticket.priority }}</span></td>
+                        <td><span class="badge status-{{ ticket.status.name|lower|cut:' ' }}">{{ ticket.status }}</span></td>
+                        <td>{{ ticket.created_at|date:"d M Y" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="empty-row">No tickets yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </main>
 
 </body>

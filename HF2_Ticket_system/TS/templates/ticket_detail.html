@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket #{{ ticket.id }}</title>
+    <link rel="stylesheet" href="{% static 'TS/css/ticket_detail.css' %}">
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h2>Ticket System</h2>
+        <ul>
+            <li><a href="/">Dashboard</a></li>
+            <li><a href="/create/">Create Ticket</a></li>
+            <li><a href="/tech_knowledge/">Tech Knowledge</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <div class="page-header">
+            <div>
+                <a href="/" class="back-link">← Back to Dashboard</a>
+                <h1>Ticket #{{ ticket.id }}</h1>
+            </div>
+            <span class="badge status-{{ ticket.status.name|lower|cut:' ' }}">{{ ticket.status }}</span>
+        </div>
+
+        <div class="detail-grid">
+
+            <!-- Left column: ticket info -->
+            <div class="detail-card">
+                <h2>Ticket Details</h2>
+
+                <div class="detail-field">
+                    <span class="field-label">Title</span>
+                    <span class="field-value">{{ ticket.title }}</span>
+                </div>
+
+                <div class="detail-field">
+                    <span class="field-label">Description</span>
+                    <span class="field-value description">{{ ticket.description }}</span>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-field">
+                        <span class="field-label">Category</span>
+                        <span class="field-value">{{ ticket.category }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="field-label">Service</span>
+                        <span class="field-value">{{ ticket.service }}</span>
+                    </div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-field">
+                        <span class="field-label">Priority</span>
+                        <span class="badge priority-{{ ticket.priority.name|lower }}">{{ ticket.priority }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="field-label">Status</span>
+                        <span class="badge status-{{ ticket.status.name|lower|cut:' ' }}">{{ ticket.status }}</span>
+                    </div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-field">
+                        <span class="field-label">Created</span>
+                        <span class="field-value">{{ ticket.created_at|date:"d M Y, H:i" }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="field-label">Last Updated</span>
+                        <span class="field-value">{{ ticket.updated_at|date:"d M Y, H:i" }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right column: user + supporter -->
+            <div class="side-cards">
+
+                <div class="detail-card">
+                    <h2>Submitted By</h2>
+                    <div class="person-info">
+                        <div class="avatar">{{ ticket.user.first_name|first }}{{ ticket.user.last_name|first }}</div>
+                        <div>
+                            <p class="person-name">{{ ticket.user.first_name }} {{ ticket.user.last_name }}</p>
+                            <p class="person-email">{{ ticket.user.email }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <h2>Assigned Supporter</h2>
+
+                    {% if ticket.supporter %}
+                    <div class="person-info">
+                        <div class="avatar supporter">{{ ticket.supporter.first_name|first }}{{ ticket.supporter.last_name|first }}</div>
+                        <div>
+                            <p class="person-name">{{ ticket.supporter.first_name }} {{ ticket.supporter.last_name }}</p>
+                            <p class="person-email">{{ ticket.supporter.email }}</p>
+                        </div>
+                    </div>
+                    {% else %}
+                    <p class="no-supporter">No supporter assigned yet.</p>
+                    {% endif %}
+
+                    <form method="post" class="assign-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="assign_supporter">
+                        <label for="supporter_id">
+                            {% if ticket.supporter %}Change Supporter{% else %}Assign Supporter{% endif %}
+                        </label>
+                        <select name="supporter_id" id="supporter_id" required>
+                            <option value="" disabled selected>Select a supporter</option>
+                            {% for supporter in supporters %}
+                            <option value="{{ supporter.id }}"
+                                {% if ticket.supporter.id == supporter.id %}selected{% endif %}>
+                                {{ supporter.first_name }} {{ supporter.last_name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit">
+                            {% if ticket.supporter %}Reassign{% else %}Assign{% endif %}
+                        </button>
+                    </form>
+                </div>
+
+                <div class="detail-card">
+                    <h2>Change Status</h2>
+                    <form method="post" class="assign-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="change_status">
+                        <label for="status_id">Current: {{ ticket.status }}</label>
+                        <select name="status_id" id="status_id" required>
+                            <option value="" disabled selected>Select a status</option>
+                            {% for status in statuses %}
+                            <option value="{{ status.id }}"
+                                {% if ticket.status.id == status.id %}selected{% endif %}>
+                                {{ status.name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit">Update Status</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

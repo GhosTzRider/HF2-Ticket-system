@@ -1,0 +1,265 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background-color: #333;
+    min-height: 100vh;
+    padding-top: 30px;
+    flex-shrink: 0;
+}
+
+.sidebar h2 {
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 14px 24px;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 15px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #555;
+    color: #fff;
+}
+
+.sidebar ul li a.active {
+    background-color: #1a73e8;
+    color: #fff;
+}
+
+/* Main content */
+.content {
+    flex: 1;
+    padding: 40px;
+}
+
+/* Page header */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+}
+
+.back-link {
+    display: inline-block;
+    font-size: 13px;
+    color: #1a73e8;
+    text-decoration: none;
+    margin-bottom: 6px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    font-size: 24px;
+    color: #222;
+}
+
+/* Two-column layout */
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 24px;
+    align-items: start;
+}
+
+.side-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Cards */
+.detail-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.detail-card h2 {
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Fields */
+.detail-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 16px;
+}
+
+.detail-field:last-child {
+    margin-bottom: 0;
+}
+
+.detail-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.field-label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.field-value {
+    font-size: 14px;
+    color: #333;
+}
+
+.field-value.description {
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+/* Person info */
+.person-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: #1a73e8;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    text-transform: uppercase;
+}
+
+.avatar.supporter {
+    background-color: #2e7d32;
+}
+
+.person-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.person-email {
+    font-size: 12px;
+    color: #888;
+    margin-top: 2px;
+}
+
+.no-supporter {
+    font-size: 13px;
+    color: #aaa;
+    font-style: italic;
+    margin-bottom: 16px;
+}
+
+/* Assign form */
+.assign-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 1px solid #eee;
+    padding-top: 16px;
+}
+
+.assign-form label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.assign-form select {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fafafa;
+    cursor: pointer;
+}
+
+.assign-form select:focus {
+    outline: none;
+    border-color: #1a73e8;
+}
+
+.assign-form button {
+    background-color: #1a73e8;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.assign-form button:hover {
+    background-color: #1558b0;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: capitalize;
+    border: 1px solid transparent;
+}
+
+.priority-low      { background-color: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
+.priority-medium   { background-color: #fff3e0; color: #e65100; border-color: #ffcc80; }
+.priority-high     { background-color: #ffebee; color: #c62828; border-color: #ef9a9a; }
+.priority-critical { background-color: #4a0000; color: #fff;    border-color: #7f0000; }
+
+.status-open       { background-color: #e3f2fd; color: #1565c0; border-color: #90caf9; }
+.status-inprogress { background-color: #fff3e0; color: #e65100; border-color: #ffcc80; }
+.status-closed     { background-color: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
