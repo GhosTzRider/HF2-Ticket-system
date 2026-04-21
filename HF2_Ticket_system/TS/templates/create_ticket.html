@@ -8,15 +8,75 @@
     <link rel="stylesheet" href="{% static 'TS/css/create_ticket.css' %}">
 </head>
 <body>
-        <nav class="sidebar">
+    <nav class="sidebar">
         <h2>Ticket System</h2>
         <ul>
-            <li><a href="/" class="active">Dashboard</a></li>
-            <li><a href="/create/">Create Ticket</a></li>
-            <li><a href="/tech_knowledge/">Tech knowledge</a></li>
+            <li><a href="/">Dashboard</a></li>
+            <li><a href="/create/" class="active">Create Ticket</a></li>
+            <li><a href="/tech_knowledge/">Tech Knowledge</a></li>
             <li><a href="/about/">About</a></li>
             <li><a href="/contact/">Contact</a></li>
         </ul>
     </nav>
+
+    <div class="content">
+        <h1>Create Ticket</h1>
+
+        {% if success %}
+        <div class="alert-success">Ticket created successfully!</div>
+        {% endif %}
+
+        <form class="ticket-form" method="post">
+            {% csrf_token %}
+
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" placeholder="Brief summary of the issue" maxlength="100" required>
+
+            <label for="description">Description</label>
+            <textarea id="description" name="description" placeholder="Describe the issue in detail..." required></textarea>
+
+            <label for="user_id">User</label>
+            <select id="user_id" name="user_id" required>
+                <option value="" disabled selected>Select a user</option>
+                {% for user in users %}
+                <option value="{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="category_id">Category</label>
+            <select id="category_id" name="category_id" required>
+                <option value="" disabled selected>Select a category</option>
+                {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="service_id">Service</label>
+            <select id="service_id" name="service_id" required>
+                <option value="" disabled selected>Select a service</option>
+                {% for service in services %}
+                <option value="{{ service.id }}">{{ service.name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="priority_id">Priority</label>
+            <select id="priority_id" name="priority_id" required>
+                <option value="" disabled selected>Select a priority</option>
+                {% for priority in priorities %}
+                <option value="{{ priority.id }}">{{ priority.name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="status_id">Status</label>
+            <input type="text" id="status_id" value="Open" disabled>
+            <input type="hidden" name="status_id" value="{{ open_status_id }}">
+
+            <label>Assigned Supporter</label>
+            <div class="supporter-box">A supporter will be assigned later</div>
+
+            <button type="submit">Create Ticket</button>
+        </form>
+    </div>
+
 </body>
 </html>
