@@ -104,7 +104,10 @@ def about(request):
     return render(request, 'about.html')
 
 def contact(request):
-    return render(request, 'contact.html')
+    context = {
+        'supporters': Supporter.objects.all(),
+    }
+    return render(request, 'contact.html', context)
 
 def tech_knowledge(request):
     return render(request, 'tech_knowledge.html')

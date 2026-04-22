@@ -8,15 +8,60 @@
     <link rel="stylesheet" href="{% static 'TS/css/contact.css' %}">
 </head>
 <body>
-        <nav class="sidebar">
-        <h2>Ticket System</h2>
-        <ul>
-            <li><a href="/">Dashboard</a></li>
-            <li><a href="/create/">Create Ticket</a></li>
-            <li><a href="/tech_knowledge/">Tech knowledge</a></li>
-            <li><a href="/about/">About</a></li>
-            <li><a href="/contact/" class="active">Contact</a></li>
-        </ul>
+    <nav class="sidebar">
+    <h2>Ticket System</h2>
+    <ul>
+        <li><a href="/">Dashboard</a></li>
+        <li><a href="/create/">Create Ticket</a></li>
+        <li><a href="/tech_knowledge/">Tech knowledge</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/contact/" class="active">Contact</a></li>
+    </ul>
     </nav>
+
+    <div class="content">
+        <h1>Contact</h1>
+
+        <section class="supporters-section">
+            <h2>Our Supporters</h2>
+            <div class="supporters-grid">
+                {% for supporter in supporters %}
+                <div class="supporter-card">
+                    <div class="supporter-avatar">{{ supporter.first_name|first }}{{ supporter.last_name|first }}</div>
+                    <div class="supporter-info">
+                        <strong>{{ supporter.first_name }} {{ supporter.last_name }}</strong>
+                        <span>{{ supporter.email }}</span>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="no-supporters">No supporters found.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="message-section">
+            <h2>Send a Message</h2>
+            <div class="contact-form">
+                <form method="post">
+                    {% csrf_token %}
+                    <label for="supporter">To</label>
+                    <select id="supporter" name="supporter_id" required>
+                        <option value="" disabled selected>Select a supporter...</option>
+                        {% for supporter in supporters %}
+                        <option value="{{ supporter.id }}">{{ supporter.first_name }} {{ supporter.last_name }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" placeholder="Message title" required>
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </div>
 </body>
 </html>

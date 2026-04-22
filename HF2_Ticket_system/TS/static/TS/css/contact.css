@@ -60,7 +60,73 @@ body {
 
 h1 {
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+/* Section headings */
+.supporters-section h2,
+.message-section h2 {
+    color: #444;
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+/* Supporters grid */
+.supporters-section {
+    margin-bottom: 40px;
+}
+
+.supporters-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.supporter-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    min-width: 220px;
+}
+
+.supporter-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #1a73e8;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    text-transform: uppercase;
+}
+
+.supporter-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.supporter-info strong {
+    color: #333;
+    font-size: 15px;
+}
+
+.supporter-info span {
+    color: #777;
+    font-size: 13px;
+}
+
+.no-supporters {
+    color: #888;
+    font-size: 14px;
 }
 
 /* Contact form */
@@ -81,6 +147,7 @@ h1 {
 }
 
 .contact-form input,
+.contact-form select,
 .contact-form textarea {
     width: 100%;
     padding: 10px 12px;
@@ -94,6 +161,7 @@ h1 {
 }
 
 .contact-form input:focus,
+.contact-form select:focus,
 .contact-form textarea:focus {
     outline: none;
     border-color: #1a73e8;
