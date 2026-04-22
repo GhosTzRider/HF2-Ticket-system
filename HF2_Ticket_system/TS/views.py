@@ -1,6 +1,45 @@
+from datetime import timedelta
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.utils import timezone
 from .models import User, Category, Service, Priority, Status, Supporter, Ticket
+
+SLA_THRESHOLDS = {
+    'critical': timedelta(hours=4),
+    'high':     timedelta(hours=8),
+    'medium':   timedelta(hours=24),
+    'low':      timedelta(hours=72),
+}
+
+def calculate_sla():
+    tickets = Ticket.objects.select_related('priority', 'status').all()
+    met = 0
+    breached = 0
+    now = timezone.now()
+
+    for ticket in tickets:
+        threshold = SLA_THRESHOLDS.get(ticket.priority.name.lower())
+        if not threshold:
+            continue
+
+        if ticket.status.name == 'Closed':
+            elapsed = ticket.updated_at - ticket.created_at
+        else:
+            elapsed = now - ticket.created_at
+
+        if elapsed <= threshold:
+            met += 1
+        else:
+            breached += 1
+
+    total = met + breached
+    return {
+        'sla_met':          met,
+        'sla_breached':     breached,
+        'sla_total':        total,
+        'sla_met_pct':      round((met / total) * 100) if total else 0,
+        'sla_breached_pct': round((breached / total) * 100) if total else 0,
+    }
 
 # Create your views here.
 
@@ -11,6 +50,7 @@ def home(request):
         'in_progress_tickets': Ticket.objects.filter(status__name='In Progress').count(),
         'closed_tickets': Ticket.objects.filter(status__name='Closed').count(),
         'recent_tickets': Ticket.objects.select_related('category', 'priority', 'status').order_by('-created_at')[:10],
+        **calculate_sla(),
     }
     return render(request, 'home.html', context)
 

@@ -145,6 +145,93 @@ h1 {
     background-color: #1558b0;
 }
 
+/* SLA Performance */
+.sla-section {
+    margin-bottom: 24px;
+}
+
+.sla-subtitle {
+    font-size: 12px;
+    color: #999;
+}
+
+.sla-body {
+    padding: 0 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sla-stats {
+    display: flex;
+    gap: 32px;
+}
+
+.sla-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.sla-pct {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.sla-stat.met .sla-pct      { color: #2e7d32; }
+.sla-stat.breached .sla-pct { color: #c62828; }
+
+.sla-label {
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sla-stat.met .sla-label      { color: #2e7d32; }
+.sla-stat.breached .sla-label { color: #c62828; }
+
+.sla-count {
+    font-size: 12px;
+    color: #999;
+}
+
+.sla-bar-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sla-bar {
+    display: flex;
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #eee;
+}
+
+.sla-bar-met {
+    background-color: #2e7d32;
+    transition: width 0.4s ease;
+}
+
+.sla-bar-breached {
+    background-color: #c62828;
+    transition: width 0.4s ease;
+}
+
+.sla-bar-empty {
+    width: 100%;
+    background-color: #eee;
+}
+
+.sla-bar-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #aaa;
+}
+
 /* Table */
 .ticket-table {
     width: 100%;

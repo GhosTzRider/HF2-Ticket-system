@@ -43,6 +43,42 @@
             </div>
         </div>
 
+        <div class="section sla-section">
+            <div class="section-header">
+                <h2>SLA Performance</h2>
+                <span class="sla-subtitle">Based on priority response thresholds &mdash; Critical 4h &bull; High 8h &bull; Medium 24h &bull; Low 72h</span>
+            </div>
+            <div class="sla-body">
+                <div class="sla-stats">
+                    <div class="sla-stat met">
+                        <span class="sla-pct">{{ sla_met_pct }}%</span>
+                        <span class="sla-label">Met</span>
+                        <span class="sla-count">{{ sla_met }} ticket{{ sla_met|pluralize }}</span>
+                    </div>
+                    <div class="sla-stat breached">
+                        <span class="sla-pct">{{ sla_breached_pct }}%</span>
+                        <span class="sla-label">Breached</span>
+                        <span class="sla-count">{{ sla_breached }} ticket{{ sla_breached|pluralize }}</span>
+                    </div>
+                </div>
+                <div class="sla-bar-wrap">
+                    <div class="sla-bar">
+                        {% if sla_total > 0 %}
+                        <div class="sla-bar-met"     style="width: {{ sla_met_pct }}%"></div>
+                        <div class="sla-bar-breached" style="width: {{ sla_breached_pct }}%"></div>
+                        {% else %}
+                        <div class="sla-bar-empty"></div>
+                        {% endif %}
+                    </div>
+                    <div class="sla-bar-labels">
+                        <span>0%</span>
+                        <span>50%</span>
+                        <span>100%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="section">
             <div class="section-header">
                 <h2>Recent Tickets</h2>
