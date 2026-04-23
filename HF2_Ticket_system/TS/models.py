@@ -41,12 +41,13 @@ class Article(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, db_column='category_id')
+    supporter = models.ForeignKey('Supporter', on_delete=models.DO_NOTHING, db_column='supporter_id')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         managed = False
-        db_table = 'acticles'  # matches your table name exactly
+        db_table = 'acticles'
 
     def __str__(self):
         return self.title

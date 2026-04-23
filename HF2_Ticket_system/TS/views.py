@@ -2,7 +2,7 @@ from datetime import timedelta
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
-from .models import User, Category, Service, Priority, Status, Supporter, Ticket
+from .models import User, Category, Service, Priority, Status, Supporter, Ticket, Article
 
 SLA_THRESHOLDS = {
     'critical': timedelta(hours=4),
@@ -117,4 +117,30 @@ def contact(request):
     return render(request, 'contact.html', context)
 
 def tech_knowledge(request):
-    return render(request, 'tech_knowledge.html')
+    query = request.GET.get('q', '').strip()
+    articles = Article.objects.select_related('category', 'supporter').order_by('-created_at')
+    if query:
+        articles = articles.filter(title__icontains=query)
+    context = {
+        'articles': articles,
+        'categories': Category.objects.all(),
+        'supporters': Supporter.objects.all(),
+        'query': query,
+    }
+    return render(request, 'tech_knowledge.html', context)
+
+def create_article(request):
+    if request.method == 'POST':
+        Article.objects.create(
+            title=request.POST['title'],
+            content=request.POST['content'],
+            category_id=request.POST['category_id'],
+            supporter_id=request.POST['supporter_id'],
+        )
+    return redirect('tech_knowledge')
+
+def delete_article(request, article_id):
+    if request.method == 'POST':
+        article = get_object_or_404(Article, id=article_id)
+        article.delete()
+    return redirect('tech_knowledge')
