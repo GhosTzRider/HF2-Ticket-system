@@ -53,8 +53,13 @@ body {
 }
 
 /* Main content area */
-.content {
+.main-content {
     flex: 1;
+    overflow-y: auto;
+    min-width: 0;
+}
+
+.content {
     padding: 40px;
 }
 
@@ -69,6 +74,7 @@ h1 {
     border-radius: 8px;
     padding: 28px;
     max-width: 650px;
+    width: 100%;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
@@ -142,4 +148,29 @@ h1 {
     font-size: 14px;
     color: #595959;
     background-color: #fafafa;
+}
+
+/* Responsive: collapse sidebar on small windows */
+@media (max-width: 600px) {
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+        padding: 16px 0;
+    }
+
+    .sidebar ul li a {
+        padding: 10px 16px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .ticket-form {
+        padding: 16px;
+    }
 }
