@@ -64,8 +64,8 @@
                 <div class="sla-bar-wrap">
                     <div class="sla-bar">
                         {% if sla_total > 0 %}
-                        <div class="sla-bar-met"     style="width: {{ sla_met_pct }}%"></div>
-                        <div class="sla-bar-breached" style="width: {{ sla_breached_pct }}%"></div>
+                        <div class="sla-bar-met"     style="--w: {{ sla_met_pct }}%"></div>
+                        <div class="sla-bar-breached" style="--w: {{ sla_breached_pct }}%"></div>
                         {% else %}
                         <div class="sla-bar-empty"></div>
                         {% endif %}

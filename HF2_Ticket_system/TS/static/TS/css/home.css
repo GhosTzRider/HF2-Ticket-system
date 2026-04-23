@@ -232,11 +232,13 @@ h1 {
 }
 
 .sla-bar-met {
+    width: var(--w, 0%);
     background-color: #2e7d32;
     transition: width 0.4s ease;
 }
 
 .sla-bar-breached {
+    width: var(--w, 0%);
     background-color: #c62828;
     transition: width 0.4s ease;
 }
