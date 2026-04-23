@@ -31,7 +31,7 @@
             <button class="btn-create" onclick="document.getElementById('createModal').style.display='flex'">
                 + New Article
             </button>
-        </div>
+        </div> 
 
         <!-- Search bar -->
         <form method="get" action="{% url 'tech_knowledge' %}" class="kb-search">
@@ -56,7 +56,9 @@
                     <span class="kb-category">{{ article.category }}</span>
                     <button
                         class="btn-delete-small"
-                        onclick="openDeleteModal({{ article.id }}, '{{ article.title|escapejs }}')"
+                        data-id="{{ article.id }}"
+                        data-title="{{ article.title|escapejs }}"
+                        onclick="openDeleteModal(this)"
                     >Delete</button>
                 </div>
                 <h2>{{ article.title }}</h2>
@@ -137,7 +139,9 @@
     </div>
 
     <script>
-        function openDeleteModal(articleId, articleTitle) {
+        function openDeleteModal(btn) {
+            var articleId = btn.getAttribute('data-id');
+            var articleTitle = btn.getAttribute('data-title');
             document.getElementById('deleteArticleTitle').textContent = articleTitle;
             document.getElementById('deleteForm').action = '/tech_knowledge/' + articleId + '/delete/';
             document.getElementById('deleteModal').style.display = 'flex';
