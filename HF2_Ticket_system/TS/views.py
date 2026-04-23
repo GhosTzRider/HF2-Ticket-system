@@ -1,6 +1,6 @@
 from datetime import timedelta
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from .models import User, Category, Service, Priority, Status, Supporter, Ticket
 
@@ -22,7 +22,7 @@ def calculate_sla():
         if not threshold:
             continue
 
-        if ticket.status.name == 'Closed':
+        if ticket.status.name in ('Closed', 'Resolved'):
             elapsed = ticket.updated_at - ticket.created_at
         else:
             elapsed = now - ticket.created_at
@@ -48,7 +48,7 @@ def home(request):
         'total_tickets': Ticket.objects.count(),
         'open_tickets': Ticket.objects.filter(status__name='Open').count(),
         'in_progress_tickets': Ticket.objects.filter(status__name='In Progress').count(),
-        'closed_tickets': Ticket.objects.filter(status__name='Closed').count(),
+        'closed_tickets': Ticket.objects.filter(status__name__in=['Closed', 'Resolved']).count(),
         'recent_tickets': Ticket.objects.select_related('category', 'priority', 'status').order_by('-created_at')[:10],
         **calculate_sla(),
     }
@@ -99,6 +99,13 @@ def ticket_detail(request, ticket_id):
         'statuses': Status.objects.all(),
     }
     return render(request, 'ticket_detail.html', context)
+
+def delete_ticket(request, ticket_id):
+    if request.method == 'POST':
+        ticket = get_object_or_404(Ticket, id=ticket_id)
+        ticket.delete()
+        return redirect('home')
+    return redirect('ticket_detail', ticket_id=ticket_id)
 
 def about(request):
     return render(request, 'about.html')

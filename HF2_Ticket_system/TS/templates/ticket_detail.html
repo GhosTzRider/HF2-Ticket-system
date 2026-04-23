@@ -26,7 +26,25 @@
                 <a href="/" class="back-link">← Back to Dashboard</a>
                 <h1>Ticket #{{ ticket.id }}</h1>
             </div>
-            <span class="badge status-{{ ticket.status.name|lower|cut:' ' }}">{{ ticket.status }}</span>
+            <div class="header-actions">
+                <span class="badge status-{{ ticket.status.name|lower|cut:' ' }}">{{ ticket.status }}</span>
+                <button class="btn-delete" onclick="document.getElementById('deleteModal').style.display='flex'">Delete Ticket</button>
+            </div>
+        </div>
+
+        <!-- Delete confirmation modal -->
+        <div id="deleteModal" class="modal-overlay" style="display:none;">
+            <div class="modal">
+                <h2>Delete Ticket</h2>
+                <p>Are you sure you want to delete <strong>Ticket #{{ ticket.id }}</strong>?<br>This action cannot be undone.</p>
+                <div class="modal-actions">
+                    <button class="btn-cancel" onclick="document.getElementById('deleteModal').style.display='none'">Cancel</button>
+                    <form method="post" action="{% url 'delete_ticket' ticket.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-confirm-delete">Yes, Delete</button>
+                    </form>
+                </div>
+            </div>
         </div>
 
         <div class="detail-grid">

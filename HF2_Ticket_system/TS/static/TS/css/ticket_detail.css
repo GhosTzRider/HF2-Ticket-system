@@ -258,8 +258,102 @@ h1 {
 .priority-low      { background-color: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
 .priority-medium   { background-color: #fff3e0; color: #e65100; border-color: #ffcc80; }
 .priority-high     { background-color: #ffebee; color: #c62828; border-color: #ef9a9a; }
-.priority-critical { background-color: #4a0000; color: #fff;    border-color: #7f0000; }
+.priority-critical { background-color: #ffb4b4; color: #b60a0a; border-color: #7f0000; }
 
 .status-open       { background-color: #e3f2fd; color: #1565c0; border-color: #90caf9; }
 .status-inprogress { background-color: #fff3e0; color: #e65100; border-color: #ffcc80; }
+.status-resolved   { background-color: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
 .status-closed     { background-color: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
+
+/* Header actions */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-delete {
+    background-color: #c62828;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-delete:hover {
+    background-color: #961e1e;
+}
+
+/* Delete confirmation modal */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: #fff;
+    border-radius: 10px;
+    padding: 32px;
+    max-width: 420px;
+    width: 90%;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+
+.modal h2 {
+    font-size: 18px;
+    color: #222;
+    margin-bottom: 12px;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.modal p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-cancel {
+    background-color: #eee;
+    color: #333;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-cancel:hover {
+    background-color: #ddd;
+}
+
+.btn-confirm-delete {
+    background-color: #c62828;
+    color: #fff;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-confirm-delete:hover {
+    background-color: #961e1e;
+}
