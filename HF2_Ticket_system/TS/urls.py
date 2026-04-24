@@ -11,4 +11,6 @@ urlpatterns = [
     path('ticket/<int:ticket_id>/delete/', views.delete_ticket, name='delete_ticket'),
     path('tech_knowledge/create/', views.create_article, name='create_article'),
     path('tech_knowledge/<int:article_id>/delete/', views.delete_article, name='delete_article'),
+    path('toggle-role/', views.toggle_role, name='toggle_role'),
+    path('set-current-user/', views.set_current_user, name='set_current_user'),
 ]

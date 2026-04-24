@@ -7,6 +7,7 @@
     <meta name="description" content="View and manage a support ticket — update status, assign a supporter, or delete the ticket.">
     <title>Ticket System</title>
     <link rel="stylesheet" href="{% static 'TS/css/ticket_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'TS/css/role_toggle.css' %}">
 </head>
 <body>
 
@@ -15,10 +16,29 @@
         <ul>
             <li><a href="/">Dashboard</a></li>
             <li><a href="/create/">Create Ticket</a></li>
+            {% if role == 'supporter' %}
             <li><a href="/tech_knowledge/">Tech Knowledge</a></li>
+            {% endif %}
             <li><a href="/about/">About</a></li>
             <li><a href="/contact/">Contact</a></li>
         </ul>
+
+        <div class="role-toggle">
+            <div class="role-badge">
+                <span class="role-badge-dot {{ role }}"></span>
+                <span class="role-badge-label">
+                    {% if role == 'supporter' %}Supporter Mode{% else %}User Mode{% endif %}
+                </span>
+            </div>
+            <form method="POST" action="/toggle-role/">
+                {% csrf_token %}
+                {% if role == 'supporter' %}
+                <button type="submit" class="role-btn to-user">Switch to User View</button>
+                {% else %}
+                <button type="submit" class="role-btn to-supporter">Switch to Supporter View</button>
+                {% endif %}
+            </form>
+        </div>
     </nav>
 
     <div class="content">

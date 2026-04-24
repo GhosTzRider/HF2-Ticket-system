@@ -7,6 +7,7 @@
     <meta name="description" content="HF2 Ticket System dashboard — view ticket statistics, SLA performance, and recent tickets.">
     <title>Ticket System</title>
     <link rel="stylesheet" href="{% static 'TS/css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'TS/css/role_toggle.css' %}">
 </head>
 <body>
 
@@ -15,13 +16,107 @@
         <ul>
             <li><a href="/" class="active">Dashboard</a></li>
             <li><a href="/create/">Create Ticket</a></li>
+            {% if role == 'supporter' %}
             <li><a href="/tech_knowledge/">Tech Knowledge</a></li>
+            {% endif %}
             <li><a href="/about/">About</a></li>
             <li><a href="/contact/">Contact</a></li>
         </ul>
+
+        <div class="role-toggle">
+            <div class="role-badge">
+                <span class="role-badge-dot {{ role }}"></span>
+                <span class="role-badge-label">
+                    {% if role == 'supporter' %}Supporter Mode{% else %}User Mode{% endif %}
+                </span>
+            </div>
+            <form method="POST" action="/toggle-role/">
+                {% csrf_token %}
+                {% if role == 'supporter' %}
+                <button type="submit" class="role-btn to-user">Switch to User View</button>
+                {% else %}
+                <button type="submit" class="role-btn to-supporter">Switch to Supporter View</button>
+                {% endif %}
+            </form>
+        </div>
     </nav>
 
     <main class="content">
+        {% if role == 'user' %}
+        <h1>My Tickets</h1>
+        <p class="subtitle">Overview of your tickets</p>
+
+        <form method="POST" action="/set-current-user/" class="user-select-form">
+            {% csrf_token %}
+            <label for="user_id" class="user-select-label">Viewing as:</label>
+            <select name="user_id" id="user_id" class="user-select" onchange="this.form.submit()">
+                <option value="">— Select a user —</option>
+                {% for u in users %}
+                <option value="{{ u.id }}" {% if u.id == current_user_id %}selected{% endif %}>
+                    {{ u.first_name }} {{ u.last_name }}
+                </option>
+                {% endfor %}
+            </select>
+        </form>
+
+        {% if not current_user_id %}
+        <div class="user-prompt">Select a user above to view their tickets.</div>
+        {% else %}
+        <div class="stats-row">
+            <div class="stat-card open">
+                <span class="stat-label">Open</span>
+                <span class="stat-number">{{ open_tickets }}</span>
+            </div>
+            <div class="stat-card in-progress">
+                <span class="stat-label">In Progress</span>
+                <span class="stat-number">{{ in_progress_tickets }}</span>
+            </div>
+            <div class="stat-card closed">
+                <span class="stat-label">Closed</span>
+                <span class="stat-number">{{ closed_tickets }}</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2>Your Tickets</h2>
+                <div class="header-right">
+                    <input type="text" id="ticketSearch" placeholder="Search tickets..." class="search-input" onkeyup="filterTickets()">
+                    <a href="/create/" class="btn-new">+ New Ticket</a>
+                </div>
+            </div>
+            <table class="ticket-table" id="ticketTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Created</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ticket in recent_tickets %}
+                    <tr class="clickable-row" onclick="window.location='/ticket/{{ ticket.id }}/'">
+                        <td>{{ ticket.id }}</td>
+                        <td>{{ ticket.title }}</td>
+                        <td>{{ ticket.category }}</td>
+                        <td><span class="badge priority-{{ ticket.priority.name|lower }}">{{ ticket.priority }}</span></td>
+                        <td><span class="badge status-{{ ticket.status.name|lower|cut:' ' }}">{{ ticket.status }}</span></td>
+                        <td>{{ ticket.created_at|date:"d M Y" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="empty-row">No tickets found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        {% else %}
         <h1>Dashboard</h1>
         <p class="subtitle">Overview of all tickets</p>
 
@@ -117,6 +212,7 @@
                 </tbody>
             </table>
         </div>
+        {% endif %}
     </main>
 
     <script>

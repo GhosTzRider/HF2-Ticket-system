@@ -44,15 +44,48 @@ def calculate_sla():
 # Create your views here.
 
 def home(request):
-    context = {
-        'total_tickets': Ticket.objects.count(),
-        'open_tickets': Ticket.objects.filter(status__name='Open').count(),
-        'in_progress_tickets': Ticket.objects.filter(status__name='In Progress').count(),
-        'closed_tickets': Ticket.objects.filter(status__name__in=['Closed', 'Resolved']).count(),
-        'recent_tickets': Ticket.objects.select_related('category', 'priority', 'status').order_by('-created_at')[:10],
-        **calculate_sla(),
-    }
+    role = request.session.get('role', 'supporter')
+    current_user_id = request.session.get('current_user_id')
+
+    if role == 'user':
+        if current_user_id:
+            qs = Ticket.objects.filter(user_id=current_user_id)
+        else:
+            qs = Ticket.objects.none()
+        context = {
+            'total_tickets': qs.count(),
+            'open_tickets': qs.filter(status__name='Open').count(),
+            'in_progress_tickets': qs.filter(status__name='In Progress').count(),
+            'closed_tickets': qs.filter(status__name__in=['Closed', 'Resolved']).count(),
+            'recent_tickets': qs.select_related('category', 'priority', 'status').order_by('-created_at')[:10],
+            'users': User.objects.all(),
+        }
+    else:
+        context = {
+            'total_tickets': Ticket.objects.count(),
+            'open_tickets': Ticket.objects.filter(status__name='Open').count(),
+            'in_progress_tickets': Ticket.objects.filter(status__name='In Progress').count(),
+            'closed_tickets': Ticket.objects.filter(status__name__in=['Closed', 'Resolved']).count(),
+            'recent_tickets': Ticket.objects.select_related('category', 'priority', 'status').order_by('-created_at')[:10],
+            **calculate_sla(),
+        }
+
     return render(request, 'home.html', context)
+
+
+def toggle_role(request):
+    if request.method == 'POST':
+        current = request.session.get('role', 'supporter')
+        request.session['role'] = 'user' if current == 'supporter' else 'supporter'
+    return redirect('home')
+
+
+def set_current_user(request):
+    if request.method == 'POST':
+        user_id = request.POST.get('user_id')
+        if user_id:
+            request.session['current_user_id'] = int(user_id)
+    return redirect('home')
 
 def create_ticket(request):
     open_status = Status.objects.filter(name='Open').first()

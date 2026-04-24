@@ -15,8 +15,12 @@ body {
 .sidebar {
     width: 220px;
     background-color: #333;
-    min-height: 100vh;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
     padding-top: 30px;
+    padding-bottom: 110px;
     flex-shrink: 0;
 }
 
@@ -320,3 +324,46 @@ h1 {
 .status-inprogress { background-color: #fff3e0; color: #974200; border-color: #ffcc80; }
 .status-closed     { background-color: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
 .status-resolved   { background-color: #dcedc8; color: #33691e; border-color: #aed581; }
+
+/* User mode: user selector */
+.user-select-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px 18px;
+}
+
+.user-select-label {
+    font-size: 14px;
+    color: #595959;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.user-select {
+    padding: 7px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    background: #fff;
+    cursor: pointer;
+    min-width: 200px;
+}
+
+.user-select:focus {
+    outline: none;
+    border-color: #1a73e8;
+}
+
+.user-prompt {
+    text-align: center;
+    color: #595959;
+    font-size: 15px;
+    font-style: italic;
+    padding: 60px 0;
+}
