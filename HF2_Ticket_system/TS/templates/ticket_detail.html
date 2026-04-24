@@ -147,6 +147,7 @@
                     <p class="no-supporter">No supporter assigned yet.</p>
                     {% endif %}
 
+                    {% if role == 'supporter' %}
                     <form method="post" class="assign-form">
                         {% csrf_token %}
                         <input type="hidden" name="action" value="assign_supporter">
@@ -166,8 +167,10 @@
                             {% if ticket.supporter %}Reassign{% else %}Assign{% endif %}
                         </button>
                     </form>
+                    {% endif %}
                 </div>
 
+                {% if role == 'supporter' %}
                 <div class="detail-card">
                     <h2>Change Status</h2>
                     <form method="post" class="assign-form">
@@ -186,6 +189,7 @@
                         <button type="submit">Update Status</button>
                     </form>
                 </div>
+                {% endif %}
 
             </div>
         </div>
