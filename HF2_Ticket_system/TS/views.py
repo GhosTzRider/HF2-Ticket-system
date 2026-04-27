@@ -1,8 +1,13 @@
+import logging
 from datetime import timedelta
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from .models import User, Category, Service, Priority, Status, Supporter, Ticket, Article, TicketComment
+
+logger = logging.getLogger('TS')
+ticket_logger = logging.getLogger('TS.tickets')
+article_logger = logging.getLogger('TS.articles')
 
 SLA_THRESHOLDS = {
     'critical': timedelta(hours=4),
@@ -46,11 +51,13 @@ def calculate_sla():
 def home(request):
     role = request.session.get('role', 'supporter')
     current_user_id = request.session.get('current_user_id')
+    logger.debug("Home view loaded | role=%s user_id=%s", role, current_user_id)
 
     if role == 'user':
         if current_user_id:
             qs = Ticket.objects.filter(user_id=current_user_id)
         else:
+            logger.warning("Home view: user role active but no current_user_id in session")
             qs = Ticket.objects.none()
         context = {
             'total_tickets': qs.count(),
@@ -76,7 +83,9 @@ def home(request):
 def toggle_role(request):
     if request.method == 'POST':
         current = request.session.get('role', 'supporter')
-        request.session['role'] = 'user' if current == 'supporter' else 'supporter'
+        new_role = 'user' if current == 'supporter' else 'supporter'
+        request.session['role'] = new_role
+        logger.info("Role toggled: %s -> %s", current, new_role)
     return redirect('home')
 
 
@@ -85,6 +94,9 @@ def set_current_user(request):
         user_id = request.POST.get('user_id')
         if user_id:
             request.session['current_user_id'] = int(user_id)
+            logger.info("Active user set to user_id=%s", user_id)
+        else:
+            logger.warning("set_current_user called with no user_id")
     return redirect('home')
 
 def create_ticket(request):
@@ -99,7 +111,7 @@ def create_ticket(request):
     }
 
     if request.method == 'POST':
-        Ticket.objects.create(
+        ticket = Ticket.objects.create(
             title=request.POST['title'],
             description=request.POST['description'],
             user_id=request.POST['user_id'],
@@ -107,6 +119,10 @@ def create_ticket(request):
             service_id=request.POST['service_id'],
             priority_id=request.POST['priority_id'],
             status_id=request.POST['status_id'],
+        )
+        ticket_logger.info(
+            "Ticket created | id=%s title=%r user_id=%s priority_id=%s",
+            ticket.id, ticket.title, ticket.user_id, ticket.priority_id,
         )
         context['success'] = True
 
@@ -116,15 +132,24 @@ def ticket_detail(request, ticket_id):
     ticket = Ticket.objects.select_related(
         'user', 'category', 'service', 'priority', 'status', 'supporter'
     ).get(id=ticket_id)
+    ticket_logger.debug("Ticket detail viewed | id=%s title=%r", ticket_id, ticket.title)
 
     if request.method == 'POST':
         action = request.POST.get('action')
         if action == 'assign_supporter':
-            ticket.supporter_id = request.POST.get('supporter_id')
+            supporter_id = request.POST.get('supporter_id')
+            ticket.supporter_id = supporter_id
             ticket.save()
+            ticket_logger.info(
+                "Supporter assigned | ticket_id=%s supporter_id=%s", ticket_id, supporter_id
+            )
         elif action == 'change_status':
-            ticket.status_id = request.POST.get('status_id')
+            status_id = request.POST.get('status_id')
+            ticket.status_id = status_id
             ticket.save()
+            ticket_logger.info(
+                "Status changed | ticket_id=%s new_status_id=%s", ticket_id, status_id
+            )
         elif action == 'add_comment':
             TicketComment.objects.create(
                 ticket=ticket,
@@ -132,6 +157,9 @@ def ticket_detail(request, ticket_id):
                 user_id=ticket.user_id,
                 comment=request.POST.get('comment'),
             )
+            ticket_logger.info("Comment added | ticket_id=%s", ticket_id)
+        else:
+            ticket_logger.warning("Unknown POST action=%r on ticket_id=%s", action, ticket_id)
         return redirect('ticket_detail', ticket_id=ticket_id)
 
     comments = ticket.comments.select_related('supporter').order_by('created_at')
@@ -146,6 +174,9 @@ def ticket_detail(request, ticket_id):
 def delete_ticket(request, ticket_id):
     if request.method == 'POST':
         ticket = get_object_or_404(Ticket, id=ticket_id)
+        ticket_logger.info(
+            "Ticket deleted | id=%s title=%r user_id=%s", ticket.id, ticket.title, ticket.user_id
+        )
         ticket.delete()
         return redirect('home')
     return redirect('ticket_detail', ticket_id=ticket_id)
@@ -164,6 +195,7 @@ def tech_knowledge(request):
     articles = Article.objects.select_related('category', 'supporter').order_by('-created_at')
     if query:
         articles = articles.filter(title__icontains=query)
+        article_logger.debug("Knowledge base searched | query=%r results=%d", query, articles.count())
     context = {
         'articles': articles,
         'categories': Category.objects.all(),
@@ -174,16 +206,23 @@ def tech_knowledge(request):
 
 def create_article(request):
     if request.method == 'POST':
-        Article.objects.create(
+        article = Article.objects.create(
             title=request.POST['title'],
             content=request.POST['content'],
             category_id=request.POST['category_id'],
             supporter_id=request.POST['supporter_id'],
+        )
+        article_logger.info(
+            "Article created | id=%s title=%r supporter_id=%s",
+            article.id, article.title, article.supporter_id,
         )
     return redirect('tech_knowledge')
 
 def delete_article(request, article_id):
     if request.method == 'POST':
         article = get_object_or_404(Article, id=article_id)
+        article_logger.info(
+            "Article deleted | id=%s title=%r", article.id, article.title
+        )
         article.delete()
     return redirect('tech_knowledge')

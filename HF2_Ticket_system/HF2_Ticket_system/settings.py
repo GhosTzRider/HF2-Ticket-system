@@ -10,10 +10,18 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import sys
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# ─── Logging ──────────────────────────────────────────────────────────────────
+# Pull in the central logging config from the repo root (one level above BASE_DIR)
+REPO_ROOT = BASE_DIR.parent
+sys.path.insert(0, str(REPO_ROOT))
+from logging_config import LOGGING_CONFIG as _LOGGING_CONFIG  # noqa: E402
+LOGGING = _LOGGING_CONFIG
 
 
 # Quick-start development settings - unsuitable for production
