@@ -29,9 +29,11 @@ CREATE TABLE acticles (
     title VARCHAR(50) NOT NULL,
     content TEXT NOT NULL,
     category_id INT NOT NULL,
+    supporter_id INT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (category_id) REFERENCES categories(Id)
+    FOREIGN KEY (category_id) REFERENCES categories(Id),
+    FOREIGN KEY (supporter_id) REFERENCES supporters(Id)
 );
 
 CREATE TABLE services (
@@ -57,10 +59,10 @@ CREATE TABLE tickets (
     category_id INT NOT NULL,
     service_id INT NOT NULL,
     priority_id INT NOT NULL,
-    status_id INT NOT NULL,
+    status_id INT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    supporter_id INT NOT NULL,
+    supporter_id INT,
     FOREIGN KEY (user_id) REFERENCES users(Id),
     FOREIGN KEY (category_id) REFERENCES categories(Id),
     FOREIGN KEY (service_id) REFERENCES services(Id),
