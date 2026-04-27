@@ -70,4 +70,16 @@ CREATE TABLE tickets (
     FOREIGN KEY (status_id) REFERENCES statuses(Id),
     FOREIGN KEY (supporter_id) REFERENCES supporters(Id)
 );
+
+CREATE TABLE ticket_comments (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    ticket_id INT NOT NULL,
+    supporter_id INT NOT NULL,
+    user_id INT NOT NULL,
+    comment TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (ticket_id) REFERENCES tickets(Id),
+    FOREIGN KEY (user_id) REFERENCES users(Id),
+    FOREIGN KEY (supporter_id) REFERENCES supporters(Id)
+);
 GO
