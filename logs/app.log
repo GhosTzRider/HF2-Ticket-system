@@ -8,3 +8,58 @@
 [2026-04-27 11:05:31] INFO     django.server:249 | "GET /tech_knowledge/ HTTP/1.1" 200 13377
 [2026-04-27 11:05:31] INFO     django.server:249 | "GET /create/ HTTP/1.1" 200 4810
 [2026-04-27 11:05:32] INFO     django.server:249 | "GET / HTTP/1.1" 200 9930
+[2026-04-27 11:08:29] INFO     django.server:249 | "GET /create/ HTTP/1.1" 200 4810
+[2026-04-27 11:08:36] INFO     django.server:249 | "GET /create/ HTTP/1.1" 200 4810
+[2026-04-27 11:08:37] INFO     django.server:249 | "GET / HTTP/1.1" 200 9930
+[2026-04-27 11:24:33] INFO     django.server:249 | "GET /ticket/1/ HTTP/1.1" 200 11344
+[2026-04-27 11:24:33] INFO     django.server:249 | "GET /static/TS/css/ticket_detail.css HTTP/1.1" 304 0
+[2026-04-27 11:25:31] INFO     django.server:249 | "POST /ticket/1/ HTTP/1.1" 302 0
+[2026-04-27 11:25:31] INFO     django.server:249 | "GET /ticket/1/ HTTP/1.1" 200 11831
+[2026-04-27 11:30:04] INFO     django.server:249 | "GET /about/ HTTP/1.1" 200 1376
+[2026-04-27 11:30:04] INFO     django.server:249 | "GET /tech_knowledge/ HTTP/1.1" 200 13377
+[2026-04-27 11:30:46] INFO     django.server:249 | "GET / HTTP/1.1" 200 9930
+[2026-04-27 11:30:48] INFO     django.server:249 | "GET /ticket/1/ HTTP/1.1" 200 11831
+[2026-04-27 13:19:39] INFO     django.server:249 | "GET /ticket/1/ HTTP/1.1" 200 11932
+[2026-04-27 13:19:39] INFO     django.server:249 | "GET /static/TS/css/ticket_detail.css HTTP/1.1" 304 0
+[2026-04-27 13:19:42] INFO     django.server:249 | "GET / HTTP/1.1" 200 9930
+[2026-04-27 13:19:43] INFO     django.server:249 | "GET /ticket/2/ HTTP/1.1" 200 11944
+[2026-04-27 13:19:48] INFO     django.server:249 | "GET / HTTP/1.1" 200 9930
+[2026-04-27 13:19:49] INFO     django.server:249 | "GET /ticket/3/ HTTP/1.1" 200 11905
+[2026-04-27 13:19:58] INFO     django.server:249 | "GET / HTTP/1.1" 200 9930
+[2026-04-27 13:19:59] INFO     django.server:249 | "GET /ticket/5/ HTTP/1.1" 200 11931
+[2026-04-27 13:20:04] INFO     django.server:249 | "GET / HTTP/1.1" 200 9930
+[2026-04-27 13:28:29] INFO     django.utils.autoreload:265 | C:\Users\HFGF\Desktop\HF2-Ticket-system\HF2_Ticket_system\HF2_Ticket_system\settings.py changed, reloading.
+[2026-04-27 13:28:30] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader
+[2026-04-27 13:28:35] INFO     django.utils.autoreload:265 | C:\Users\HFGF\Desktop\HF2-Ticket-system\HF2_Ticket_system\HF2_Ticket_system\settings.py changed, reloading.
+[2026-04-27 13:28:36] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader
+[2026-04-27 13:28:37] INFO     django.utils.autoreload:265 | C:\Users\HFGF\Desktop\HF2-Ticket-system\HF2_Ticket_system\HF2_Ticket_system\settings.py changed, reloading.
+[2026-04-27 13:28:38] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader
+[2026-04-27 13:28:42] INFO     django.utils.autoreload:265 | C:\Users\HFGF\Desktop\HF2-Ticket-system\HF2_Ticket_system\HF2_Ticket_system\settings.py changed, reloading.
+[2026-04-27 13:28:42] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader
+[2026-04-27 13:28:52] INFO     django.utils.autoreload:265 | C:\Users\HFGF\Desktop\HF2-Ticket-system\HF2_Ticket_system\HF2_Ticket_system\settings.py changed, reloading.
+[2026-04-27 13:28:53] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader
+[2026-04-27 13:29:01] INFO     django.utils.autoreload:265 | C:\Users\HFGF\Desktop\HF2-Ticket-system\HF2_Ticket_system\HF2_Ticket_system\settings.py changed, reloading.
+[2026-04-27 13:29:01] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader
+[2026-04-27 13:29:05] INFO     django.utils.autoreload:265 | C:\Users\HFGF\Desktop\HF2-Ticket-system\HF2_Ticket_system\HF2_Ticket_system\settings.py changed, reloading.
+[2026-04-27 13:29:05] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader
+[2026-04-27 13:29:13] INFO     django.utils.autoreload:265 | C:\Users\HFGF\Desktop\HF2-Ticket-system\HF2_Ticket_system\HF2_Ticket_system\settings.py changed, reloading.
+[2026-04-27 13:29:13] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader
+[2026-04-27 13:29:17] INFO     django.utils.autoreload:265 | C:\Users\HFGF\Desktop\HF2-Ticket-system\HF2_Ticket_system\HF2_Ticket_system\settings.py changed, reloading.
+[2026-04-27 13:29:17] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader
+[2026-04-27 13:29:19] INFO     django.utils.autoreload:265 | C:\Users\HFGF\Desktop\HF2-Ticket-system\HF2_Ticket_system\HF2_Ticket_system\settings.py changed, reloading.
+[2026-04-27 13:29:20] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader
+[2026-04-27 13:29:22] INFO     django.utils.autoreload:265 | C:\Users\HFGF\Desktop\HF2-Ticket-system\HF2_Ticket_system\HF2_Ticket_system\settings.py changed, reloading.
+[2026-04-27 13:29:23] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader
+[2026-04-27 13:29:27] INFO     django.utils.autoreload:265 | C:\Users\HFGF\Desktop\HF2-Ticket-system\HF2_Ticket_system\HF2_Ticket_system\settings.py changed, reloading.
+[2026-04-27 13:29:28] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader
+[2026-04-27 13:29:31] INFO     django.utils.autoreload:265 | C:\Users\HFGF\Desktop\HF2-Ticket-system\HF2_Ticket_system\HF2_Ticket_system\settings.py changed, reloading.
+[2026-04-27 13:29:32] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader
+[2026-04-27 14:32:20] INFO     django.server:249 | "GET /create/ HTTP/1.1" 200 4810
+[2026-04-27 14:32:20] INFO     django.server:249 | "GET /tech_knowledge/ HTTP/1.1" 200 13377
+[2026-04-27 14:32:21] INFO     django.server:249 | "GET /contact/ HTTP/1.1" 200 4762
+[2026-04-27 14:32:22] INFO     django.server:249 | "GET /about/ HTTP/1.1" 200 1376
+[2026-04-27 14:32:22] INFO     django.server:249 | "GET /tech_knowledge/ HTTP/1.1" 200 13377
+[2026-04-27 14:32:23] INFO     django.server:249 | "GET /create/ HTTP/1.1" 200 4810
+[2026-04-27 14:32:23] INFO     django.server:249 | "GET / HTTP/1.1" 200 9930
+[2026-04-27 14:32:23] INFO     django.server:249 | "GET / HTTP/1.1" 200 9930
+[2026-04-27 14:36:36] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader

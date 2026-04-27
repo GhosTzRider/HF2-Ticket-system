@@ -1,0 +1,9 @@
+[2026-04-27 11:24:33] DEBUG    TS.tickets:135 | Ticket detail viewed | id=1 title='Cannot log into account'
+[2026-04-27 11:25:31] DEBUG    TS.tickets:135 | Ticket detail viewed | id=1 title='Cannot log into account'
+[2026-04-27 11:25:31] INFO     TS.tickets:160 | Comment added | ticket_id=1
+[2026-04-27 11:25:31] DEBUG    TS.tickets:135 | Ticket detail viewed | id=1 title='Cannot log into account'
+[2026-04-27 11:30:48] DEBUG    TS.tickets:135 | Ticket detail viewed | id=1 title='Cannot log into account'
+[2026-04-27 13:19:39] DEBUG    TS.tickets:135 | Ticket detail viewed | id=1 title='Cannot log into account'
+[2026-04-27 13:19:43] DEBUG    TS.tickets:135 | Ticket detail viewed | id=2 title='Computer is very slow'
+[2026-04-27 13:19:49] DEBUG    TS.tickets:135 | Ticket detail viewed | id=3 title='Internet not working'
+[2026-04-27 13:19:59] DEBUG    TS.tickets:135 | Ticket detail viewed | id=5 title='Forgot password'
