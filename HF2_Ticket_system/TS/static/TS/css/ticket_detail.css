@@ -361,3 +361,129 @@ h1 {
 .btn-confirm-delete:hover {
     background-color: #961e1e;
 }
+
+/* Comments section */
+.comments-section {
+    margin-top: 24px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.comments-section h2 {
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.comment {
+    padding: 14px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.comment:last-of-type {
+    border-bottom: none;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.comment-author {
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+    display: block;
+}
+
+.comment-date {
+    font-size: 11px;
+    color: #aaa;
+    display: block;
+}
+
+.comment-body {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    padding-left: 52px;
+}
+
+.no-comments {
+    font-size: 13px;
+    color: #aaa;
+    font-style: italic;
+    margin-bottom: 16px;
+}
+
+/* Comment form */
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 1px solid #eee;
+    padding-top: 16px;
+    margin-top: 16px;
+}
+
+.comment-form h3 {
+    font-size: 13px;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.comment-form label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.comment-form select,
+.comment-form textarea {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fafafa;
+}
+
+.comment-form select:focus,
+.comment-form textarea:focus {
+    outline: none;
+    border-color: #1a73e8;
+}
+
+.comment-form textarea {
+    resize: vertical;
+    font-family: Arial, sans-serif;
+}
+
+.comment-form button {
+    align-self: flex-end;
+    background-color: #1a73e8;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.comment-form button:hover {
+    background-color: #1558b0;
+}

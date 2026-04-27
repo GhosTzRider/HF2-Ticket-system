@@ -193,6 +193,47 @@
 
             </div>
         </div>
+
+        <!-- Comments section -->
+        <div class="comments-section">
+            <h2>Comments</h2>
+
+            {% if comments %}
+                {% for c in comments %}
+                <div class="comment">
+                    <div class="comment-header">
+                        <div class="avatar supporter">{{ c.supporter.first_name|first }}{{ c.supporter.last_name|first }}</div>
+                        <div>
+                            <span class="comment-author">{{ c.supporter.first_name }} {{ c.supporter.last_name }}</span>
+                            <span class="comment-date">{{ c.created_at|date:"d M Y, H:i" }}</span>
+                        </div>
+                    </div>
+                    <p class="comment-body">{{ c.comment }}</p>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-comments">No comments yet.</p>
+            {% endif %}
+
+            {% if role == 'supporter' %}
+            <form method="post" class="comment-form">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="add_comment">
+                <h3>Add a Comment</h3>
+                <label for="comment_supporter_id">Commenting as</label>
+                <select name="comment_supporter_id" id="comment_supporter_id" required>
+                    <option value="" disabled selected>Select your name</option>
+                    {% for supporter in supporters %}
+                    <option value="{{ supporter.id }}">{{ supporter.first_name }} {{ supporter.last_name }}</option>
+                    {% endfor %}
+                </select>
+                <label for="comment">Comment</label>
+                <textarea name="comment" id="comment" rows="3" placeholder="Write a comment..." required></textarea>
+                <button type="submit">Post Comment</button>
+            </form>
+            {% endif %}
+        </div>
+
     </div>
 
 </body>

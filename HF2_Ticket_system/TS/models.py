@@ -104,3 +104,15 @@ class Ticket(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class TicketComment(models.Model):
+    ticket = models.ForeignKey(Ticket, on_delete=models.DO_NOTHING, db_column='ticket_id', related_name='comments')
+    supporter = models.ForeignKey(Supporter, on_delete=models.DO_NOTHING, db_column='supporter_id')
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, db_column='user_id')
+    comment = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        managed = False
+        db_table = 'ticket_comments'

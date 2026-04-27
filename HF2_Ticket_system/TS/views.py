@@ -2,7 +2,7 @@ from datetime import timedelta
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
-from .models import User, Category, Service, Priority, Status, Supporter, Ticket, Article
+from .models import User, Category, Service, Priority, Status, Supporter, Ticket, Article, TicketComment
 
 SLA_THRESHOLDS = {
     'critical': timedelta(hours=4),
@@ -121,15 +121,25 @@ def ticket_detail(request, ticket_id):
         action = request.POST.get('action')
         if action == 'assign_supporter':
             ticket.supporter_id = request.POST.get('supporter_id')
+            ticket.save()
         elif action == 'change_status':
             ticket.status_id = request.POST.get('status_id')
-        ticket.save()
+            ticket.save()
+        elif action == 'add_comment':
+            TicketComment.objects.create(
+                ticket=ticket,
+                supporter_id=request.POST.get('comment_supporter_id'),
+                user_id=ticket.user_id,
+                comment=request.POST.get('comment'),
+            )
         return redirect('ticket_detail', ticket_id=ticket_id)
 
+    comments = ticket.comments.select_related('supporter').order_by('created_at')
     context = {
         'ticket': ticket,
         'supporters': Supporter.objects.all(),
         'statuses': Status.objects.all(),
+        'comments': comments,
     }
     return render(request, 'ticket_detail.html', context)
 
