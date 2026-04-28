@@ -1,10 +1,11 @@
-import sys
+import importlib.util
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
-REPO_ROOT = BASE_DIR.parent
-sys.path.insert(0, str(REPO_ROOT))
-from logging_config import LOGGING_CONFIG as _LOGGING_CONFIG
-LOGGING = _LOGGING_CONFIG
+_logging_config_path = BASE_DIR.parent / 'logging_config.py'
+_spec = importlib.util.spec_from_file_location('logging_config', _logging_config_path)
+_mod = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_mod)
+LOGGING = _mod.LOGGING_CONFIG
 
 
 SECRET_KEY = 'django-insecure-&8=l1e7i07)!hlyd51ah0lk#=8rk420ee2u*jda$1^x^ij%2n9'

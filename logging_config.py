@@ -57,33 +57,33 @@ LOGGING_CONFIG = {
             'formatter': 'simple',
         },
 
-        # General application log — rotates daily, keeps 14 days
+        # General application log — rotates at 10 MB, keeps 14 backups
         'app_file': {
-            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'class': 'concurrent_log_handler.ConcurrentRotatingFileHandler',
             'filename': str(LOGS_DIR / 'app.log'),
-            'when': 'midnight',
+            'maxBytes': 10 * 1024 * 1024,
             'backupCount': 14,
             'encoding': 'utf-8',
             'level': 'INFO',
             'formatter': 'detailed',
         },
 
-        # Error log — only ERROR and CRITICAL, rotates daily, keeps 30 days
+        # Error log — only ERROR and CRITICAL, rotates at 10 MB, keeps 30 backups
         'error_file': {
-            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'class': 'concurrent_log_handler.ConcurrentRotatingFileHandler',
             'filename': str(LOGS_DIR / 'error.log'),
-            'when': 'midnight',
+            'maxBytes': 10 * 1024 * 1024,
             'backupCount': 30,
             'encoding': 'utf-8',
             'level': 'ERROR',
             'formatter': 'detailed',
         },
 
-        # Ticket operations log — DEBUG and above, keeps 7 days
+        # Ticket operations log — DEBUG and above, rotates at 10 MB, keeps 7 backups
         'tickets_file': {
-            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'class': 'concurrent_log_handler.ConcurrentRotatingFileHandler',
             'filename': str(LOGS_DIR / 'tickets.log'),
-            'when': 'midnight',
+            'maxBytes': 10 * 1024 * 1024,
             'backupCount': 7,
             'encoding': 'utf-8',
             'level': 'DEBUG',

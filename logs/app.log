@@ -63,3 +63,10 @@
 [2026-04-27 14:32:23] INFO     django.server:249 | "GET / HTTP/1.1" 200 9930
 [2026-04-27 14:32:23] INFO     django.server:249 | "GET / HTTP/1.1" 200 9930
 [2026-04-27 14:36:36] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader
+[2026-04-28 10:21:42] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader
+[2026-04-28 10:21:44] INFO     django.server:249 | "GET /create/ HTTP/1.1" 200 4810
+[2026-04-28 10:21:46] INFO     django.server:249 | "GET / HTTP/1.1" 200 9929
+[2026-04-28 10:21:47] INFO     django.server:249 | "GET /create/ HTTP/1.1" 200 4810
+[2026-04-28 10:21:47] INFO     django.server:249 | "GET /about/ HTTP/1.1" 200 1376
+[2026-04-28 10:21:47] INFO     django.server:249 | "GET /static/TS/css/about.css HTTP/1.1" 304 0
+[2026-04-28 10:21:50] INFO     django.server:249 | "GET /contact/ HTTP/1.1" 200 4762
