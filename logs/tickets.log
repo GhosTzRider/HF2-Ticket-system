@@ -7,3 +7,6 @@
 [2026-04-27 13:19:43] DEBUG    TS.tickets:135 | Ticket detail viewed | id=2 title='Computer is very slow'
 [2026-04-27 13:19:49] DEBUG    TS.tickets:135 | Ticket detail viewed | id=3 title='Internet not working'
 [2026-04-27 13:19:59] DEBUG    TS.tickets:135 | Ticket detail viewed | id=5 title='Forgot password'
+[2026-04-28 11:07:06] DEBUG    TS.tickets:135 | Ticket detail viewed | id=1 title='Cannot log into account'
+[2026-04-28 12:19:29] DEBUG    TS.tickets:135 | Ticket detail viewed | id=2 title='Computer is very slow'
+[2026-04-28 12:19:37] DEBUG    TS.tickets:135 | Ticket detail viewed | id=1 title='Cannot log into account'
