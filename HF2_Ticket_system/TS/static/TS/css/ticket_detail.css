@@ -87,18 +87,23 @@ h1 {
     color: #222;
 }
 
-/* Two-column layout */
-.detail-grid {
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: 24px;
-    align-items: start;
+/* Ticket info card (full width) */
+.ticket-info-card {
+    margin-bottom: 24px;
 }
 
+/* Horizontal row of cards */
 .side-cards {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 20px;
+    align-items: stretch;
+    margin-bottom: 24px;
+}
+
+.side-cards .detail-card {
+    flex: 1;
+    min-width: 0;
 }
 
 /* Cards */

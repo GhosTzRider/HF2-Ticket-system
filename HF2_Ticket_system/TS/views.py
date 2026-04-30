@@ -150,6 +150,13 @@ def ticket_detail(request, ticket_id):
             ticket_logger.info(
                 "Status changed | ticket_id=%s new_status_id=%s", ticket_id, status_id
             )
+        elif action == 'change_priority':
+            priority_id = request.POST.get('priority_id')
+            ticket.priority_id = priority_id
+            ticket.save()
+            ticket_logger.info(
+                "Priority changed | ticket_id=%s new_priority_id=%s", ticket_id, priority_id
+            )
         elif action == 'add_comment':
             role = request.session.get('role', 'supporter')
             if role == 'user':
@@ -176,6 +183,7 @@ def ticket_detail(request, ticket_id):
         'ticket': ticket,
         'supporters': Supporter.objects.all(),
         'statuses': Status.objects.all(),
+        'priorities': Priority.objects.all(),
         'comments': comments,
         'role': request.session.get('role', 'supporter'),
     }
