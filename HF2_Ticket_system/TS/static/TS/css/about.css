@@ -79,4 +79,27 @@ p {
     padding: 24px;
     max-width: 700px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    margin-bottom: 24px;
+}
+
+.about-card h2 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.pdf-btn {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 20px;
+    background-color: #1a73e8;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.pdf-btn:hover {
+    background-color: #1558b0;
 }
