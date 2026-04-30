@@ -202,11 +202,19 @@
                 {% for c in comments %}
                 <div class="comment">
                     <div class="comment-header">
+                        {% if c.supporter %}
                         <div class="avatar supporter">{{ c.supporter.first_name|first }}{{ c.supporter.last_name|first }}</div>
                         <div>
                             <span class="comment-author">{{ c.supporter.first_name }} {{ c.supporter.last_name }}</span>
                             <span class="comment-date">{{ c.created_at|date:"d M Y, H:i" }}</span>
                         </div>
+                        {% else %}
+                        <div class="avatar">{{ c.user.first_name|first }}{{ c.user.last_name|first }}</div>
+                        <div>
+                            <span class="comment-author">{{ c.user.first_name }} {{ c.user.last_name }}</span>
+                            <span class="comment-date">{{ c.created_at|date:"d M Y, H:i" }}</span>
+                        </div>
+                        {% endif %}
                     </div>
                     <p class="comment-body">{{ c.comment }}</p>
                 </div>
@@ -230,6 +238,16 @@
                 <label for="comment">Comment</label>
                 <textarea name="comment" id="comment" rows="3" placeholder="Write a comment..." required></textarea>
                 <button type="submit">Post Comment</button>
+            </form>
+            {% elif role == 'user' %}
+            <form method="post" class="comment-form">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="add_comment">
+                <h3>Write a Reply</h3>
+                <p class="comment-author">Commenting as {{ ticket.user.first_name }} {{ ticket.user.last_name }}</p>
+                <label for="comment">Comment</label>
+                <textarea name="comment" id="comment" rows="3" placeholder="Write a reply..." required></textarea>
+                <button type="submit">Post Reply</button>
             </form>
             {% endif %}
         </div>

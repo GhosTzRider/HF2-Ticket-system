@@ -151,23 +151,33 @@ def ticket_detail(request, ticket_id):
                 "Status changed | ticket_id=%s new_status_id=%s", ticket_id, status_id
             )
         elif action == 'add_comment':
-            TicketComment.objects.create(
-                ticket=ticket,
-                supporter_id=request.POST.get('comment_supporter_id'),
-                user_id=ticket.user_id,
-                comment=request.POST.get('comment'),
-            )
-            ticket_logger.info("Comment added | ticket_id=%s", ticket_id)
+            role = request.session.get('role', 'supporter')
+            if role == 'user':
+                TicketComment.objects.create(
+                    ticket=ticket,
+                    supporter=None,
+                    user_id=ticket.user_id,
+                    comment=request.POST.get('comment'),
+                )
+            else:
+                TicketComment.objects.create(
+                    ticket=ticket,
+                    supporter_id=request.POST.get('comment_supporter_id'),
+                    user_id=ticket.user_id,
+                    comment=request.POST.get('comment'),
+                )
+            ticket_logger.info("Comment added | ticket_id=%s role=%s", ticket_id, role)
         else:
             ticket_logger.warning("Unknown POST action=%r on ticket_id=%s", action, ticket_id)
         return redirect('ticket_detail', ticket_id=ticket_id)
 
-    comments = ticket.comments.select_related('supporter').order_by('created_at')
+    comments = ticket.comments.select_related('supporter', 'user').order_by('created_at')
     context = {
         'ticket': ticket,
         'supporters': Supporter.objects.all(),
         'statuses': Status.objects.all(),
         'comments': comments,
+        'role': request.session.get('role', 'supporter'),
     }
     return render(request, 'ticket_detail.html', context)
 
