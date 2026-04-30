@@ -187,6 +187,7 @@ def about(request):
 def contact(request):
     context = {
         'supporters': Supporter.objects.all(),
+        'users': User.objects.all(),
     }
     return render(request, 'contact.html', context)
 

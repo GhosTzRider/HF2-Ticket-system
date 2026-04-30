@@ -65,6 +65,14 @@
             <div class="contact-form">
                 <form method="post">
                     {% csrf_token %}
+                    <label for="user">From</label>
+                    <select id="user" name="user_id" required>
+                        <option value="" disabled selected>Select a user...</option>
+                        {% for user in users %}
+                        <option value="{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</option>
+                        {% endfor %}
+                    </select>
+
                     <label for="supporter">To</label>
                     <select id="supporter" name="supporter_id" required>
                         <option value="" disabled selected>Select a supporter...</option>
