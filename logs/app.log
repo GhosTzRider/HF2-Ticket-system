@@ -318,3 +318,72 @@
 [2026-05-01 11:50:24] INFO     django.server:249 | "GET /?supporter_id=2 HTTP/1.1" 200 7074
 [2026-05-01 11:50:30] INFO     django.server:249 | "GET /?supporter_id=1 HTTP/1.1" 200 7061
 [2026-05-01 11:50:31] INFO     django.server:249 | "GET /?supporter_id= HTTP/1.1" 200 10856
+[2026-05-01 11:52:19] INFO     django.server:249 | "GET /create/ HTTP/1.1" 200 4810
+[2026-05-01 11:52:19] INFO     django.server:249 | "GET /static/TS/css/create_ticket.css HTTP/1.1" 304 0
+[2026-05-01 11:52:23] INFO     django.server:249 | "GET / HTTP/1.1" 200 10856
+[2026-05-01 11:52:25] INFO     django.server:249 | "GET /create/ HTTP/1.1" 200 4810
+[2026-05-01 11:52:30] INFO     django.server:249 | "GET / HTTP/1.1" 200 10856
+[2026-05-01 11:52:31] INFO     django.server:249 | "GET /ticket/4/ HTTP/1.1" 200 13012
+[2026-05-01 11:53:44] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader
+[2026-05-01 11:53:49] INFO     django.server:249 | "GET /ticket/4/ HTTP/1.1" 200 13012
+[2026-05-01 11:53:54] INFO     django.server:249 | "GET / HTTP/1.1" 200 10856
+[2026-05-01 11:54:04] INFO     django.server:249 | "GET /ticket/7/ HTTP/1.1" 200 12988
+[2026-05-01 11:56:00] INFO     django.utils.autoreload:265 | C:\Users\mero\Desktop\Programmering\VSC\HF2-Ticket-system\HF2_Ticket_system\TS\views.py changed, reloading.
+[2026-05-01 11:56:01] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader
+[2026-05-01 11:56:10] INFO     django.utils.autoreload:265 | C:\Users\mero\Desktop\Programmering\VSC\HF2-Ticket-system\HF2_Ticket_system\TS\views.py changed, reloading.
+[2026-05-01 11:56:11] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader
+[2026-05-01 11:56:19] INFO     django.server:249 | "GET /ticket/7/ HTTP/1.1" 200 12988
+[2026-05-01 11:56:20] INFO     django.server:249 | "GET /static/TS/css/ticket_detail.css HTTP/1.1" 200 9316
+[2026-05-01 11:56:20] INFO     django.server:249 | "GET /static/TS/css/role_toggle.css HTTP/1.1" 200 1369
+[2026-05-01 11:56:20] WARNING  django.server:249 | "GET /favicon.ico HTTP/1.1" 404 5202
+[2026-05-01 11:56:21] INFO     django.server:249 | "GET / HTTP/1.1" 200 10856
+[2026-05-01 11:56:23] INFO     django.server:249 | "GET / HTTP/1.1" 200 10856
+[2026-05-01 11:56:23] INFO     django.server:249 | "GET /static/TS/css/role_toggle.css HTTP/1.1" 200 1369
+[2026-05-01 11:56:23] INFO     django.server:249 | "GET /static/TS/css/home.css HTTP/1.1" 200 7106
+[2026-05-01 11:56:23] WARNING  django.server:249 | "GET /favicon.ico HTTP/1.1" 404 5202
+[2026-05-01 11:56:25] INFO     django.server:249 | "GET /ticket/2/ HTTP/1.1" 200 13007
+[2026-05-01 11:56:25] INFO     django.server:249 | "GET /static/TS/css/ticket_detail.css HTTP/1.1" 304 0
+[2026-05-01 12:01:52] INFO     django.server:249 | "GET /ticket/2/ HTTP/1.1" 200 16252
+[2026-05-01 12:01:52] INFO     django.server:249 | "GET /static/TS/css/ticket_detail.css HTTP/1.1" 200 9316
+[2026-05-01 12:01:52] INFO     django.server:249 | "GET /static/TS/css/role_toggle.css HTTP/1.1" 200 1369
+[2026-05-01 12:01:52] WARNING  django.server:249 | "GET /favicon.ico HTTP/1.1" 404 5202
+[2026-05-01 12:02:01] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader
+[2026-05-01 12:02:03] INFO     django.server:249 | "GET /ticket/2/ HTTP/1.1" 200 16252
+[2026-05-01 12:02:03] INFO     django.server:249 | "GET /static/TS/css/role_toggle.css HTTP/1.1" 200 1369
+[2026-05-01 12:02:03] INFO     django.server:249 | "GET /static/TS/css/ticket_detail.css HTTP/1.1" 200 9316
+[2026-05-01 12:02:03] WARNING  django.server:249 | "GET /favicon.ico HTTP/1.1" 404 5202
+[2026-05-01 12:02:04] INFO     django.server:249 | "GET / HTTP/1.1" 200 16192
+[2026-05-01 12:02:04] INFO     django.server:249 | "GET /static/TS/css/home.css HTTP/1.1" 304 0
+[2026-05-01 12:03:14] INFO     django.server:249 | "GET /ticket/16/ HTTP/1.1" 200 13985
+[2026-05-01 12:03:14] INFO     django.server:249 | "GET /static/TS/css/ticket_detail.css HTTP/1.1" 304 0
+[2026-05-01 12:03:17] INFO     django.server:249 | "GET / HTTP/1.1" 200 16192
+[2026-05-01 12:03:17] INFO     django.server:249 | "GET /static/TS/css/home.css HTTP/1.1" 304 0
+[2026-05-01 12:03:19] INFO     django.server:249 | "GET /ticket/2/ HTTP/1.1" 200 16252
+[2026-05-01 12:03:23] INFO     django.server:249 | "GET / HTTP/1.1" 200 16192
+[2026-05-01 12:04:15] INFO     django.utils.autoreload:681 | Watching for file changes with StatReloader
+[2026-05-01 12:04:16] INFO     django.server:249 | "GET / HTTP/1.1" 200 10852
+[2026-05-01 12:04:16] INFO     django.server:249 | "GET /static/TS/css/home.css HTTP/1.1" 304 0
+[2026-05-01 12:04:16] WARNING  django.server:249 | "GET /favicon.ico HTTP/1.1" 404 5202
+[2026-05-01 12:04:21] INFO     django.server:249 | "GET /ticket/1/ HTTP/1.1" 200 12951
+[2026-05-01 12:04:21] INFO     django.server:249 | "GET /static/TS/css/ticket_detail.css HTTP/1.1" 304 0
+[2026-05-01 12:04:23] INFO     django.server:249 | "GET / HTTP/1.1" 200 10852
+[2026-05-01 12:04:26] INFO     django.server:249 | "GET /tech_knowledge/ HTTP/1.1" 200 15845
+[2026-05-01 12:04:26] INFO     django.server:249 | "GET /static/TS/css/tech_knowledge.css HTTP/1.1" 304 0
+[2026-05-01 12:04:35] INFO     django.server:249 | "GET /about/ HTTP/1.1" 200 2926
+[2026-05-01 12:04:35] INFO     django.server:249 | "GET /static/TS/css/about.css HTTP/1.1" 304 0
+[2026-05-01 12:04:36] INFO     django.server:249 | "GET /contact/ HTTP/1.1" 200 5470
+[2026-05-01 12:04:36] INFO     django.server:249 | "GET /static/TS/css/contact.css HTTP/1.1" 304 0
+[2026-05-01 12:04:36] INFO     django.server:249 | "GET /tech_knowledge/ HTTP/1.1" 200 15845
+[2026-05-01 12:04:37] INFO     django.server:249 | "GET /create/ HTTP/1.1" 200 4810
+[2026-05-01 12:04:37] INFO     django.server:249 | "GET /static/TS/css/create_ticket.css HTTP/1.1" 304 0
+[2026-05-01 12:04:40] INFO     django.server:249 | "GET / HTTP/1.1" 200 10852
+[2026-05-01 12:05:18] INFO     django.server:249 | "GET /?supporter_id=2 HTTP/1.1" 200 7082
+[2026-05-01 12:05:19] INFO     django.server:249 | "GET /static/TS/css/home.css HTTP/1.1" 304 0
+[2026-05-01 12:05:20] INFO     django.server:249 | "GET /?supporter_id=1 HTTP/1.1" 200 7051
+[2026-05-01 12:05:21] INFO     django.server:249 | "GET /?supporter_id= HTTP/1.1" 200 10852
+[2026-05-01 12:05:24] INFO     django.server:249 | "GET /?supporter_id=5 HTTP/1.1" 200 7047
+[2026-05-01 12:05:25] INFO     django.server:249 | "GET /?supporter_id=2 HTTP/1.1" 200 7082
+[2026-05-01 12:05:30] INFO     django.server:249 | "GET /?supporter_id= HTTP/1.1" 200 10852
+[2026-05-01 12:05:36] INFO     django.server:249 | "GET /create/ HTTP/1.1" 200 4810
+[2026-05-01 12:13:06] INFO     django.server:249 | "GET / HTTP/1.1" 200 10852
+[2026-05-01 12:13:06] INFO     django.server:249 | "GET /static/TS/css/home.css HTTP/1.1" 304 0
