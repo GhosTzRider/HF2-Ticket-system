@@ -83,6 +83,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+TEST_RUNNER = 'TS.test_runner.UnmanagedModelsTestRunner'
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
