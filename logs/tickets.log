@@ -10,3 +10,20 @@
 [2026-04-28 11:07:06] DEBUG    TS.tickets:135 | Ticket detail viewed | id=1 title='Cannot log into account'
 [2026-04-28 12:19:29] DEBUG    TS.tickets:135 | Ticket detail viewed | id=2 title='Computer is very slow'
 [2026-04-28 12:19:37] DEBUG    TS.tickets:135 | Ticket detail viewed | id=1 title='Cannot log into account'
+[2026-05-01 09:40:33] DEBUG    TS.tickets:135 | Ticket detail viewed | id=2 title='Computer is very slow'
+[2026-05-01 09:49:15] DEBUG    TS.tickets:135 | Ticket detail viewed | id=1 title='Cannot log into account'
+[2026-05-01 09:49:56] INFO     TS.tickets:123 | Ticket created | id=11 title='test' user_id=2 priority_id=4
+[2026-05-01 09:50:04] DEBUG    TS.tickets:135 | Ticket detail viewed | id=11 title='test'
+[2026-05-01 09:50:07] INFO     TS.tickets:195 | Ticket deleted | id=11 title='test' user_id=2
+[2026-05-01 10:04:56] DEBUG    TS.tickets:135 | Ticket detail viewed | id=1 title='Cannot log into account'
+[2026-05-01 10:10:20] INFO     TS.tickets:123 | Ticket created | id=12 title='test' user_id=4 priority_id=3
+[2026-05-01 10:10:24] DEBUG    TS.tickets:135 | Ticket detail viewed | id=10 title='Other issue'
+[2026-05-01 10:13:05] DEBUG    TS.articles:217 | Knowledge base searched | query='how' results=1
+[2026-05-01 10:42:49] DEBUG    TS.tickets:135 | Ticket detail viewed | id=1 title='Cannot log into account'
+[2026-05-01 10:52:09] DEBUG    TS.articles:217 | Knowledge base searched | query='fixing' results=1
+[2026-05-01 10:53:18] DEBUG    TS.tickets:135 | Ticket detail viewed | id=2 title='Computer is very slow'
+[2026-05-01 11:10:03] DEBUG    TS.tickets:135 | Ticket detail viewed | id=12 title='test'
+[2026-05-01 11:10:09] INFO     TS.tickets:195 | Ticket deleted | id=12 title='test' user_id=4
+[2026-05-01 11:10:24] INFO     TS.tickets:123 | Ticket created | id=13 title='tets' user_id=1 priority_id=4
+[2026-05-01 11:42:59] DEBUG    TS.tickets:135 | Ticket detail viewed | id=13 title='tets'
+[2026-05-01 11:43:01] INFO     TS.tickets:195 | Ticket deleted | id=13 title='tets' user_id=1

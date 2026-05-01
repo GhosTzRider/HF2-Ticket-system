@@ -120,6 +120,18 @@
         <h1>Dashboard</h1>
         <p class="subtitle">Overview of all tickets</p>
 
+        <form method="GET" action="/" class="user-select-form">
+            <label for="supporter_id" class="user-select-label">Filter by supporter:</label>
+            <select name="supporter_id" id="supporter_id" class="user-select" onchange="this.form.submit()">
+                <option value="">— All supporters —</option>
+                {% for s in supporters %}
+                <option value="{{ s.id }}" {% if s.id == selected_supporter_id %}selected{% endif %}>
+                    {{ s.first_name }} {{ s.last_name }}
+                </option>
+                {% endfor %}
+            </select>
+        </form>
+
         <div class="stats-row">
             <div class="stat-card">
                 <span class="stat-label">Total Tickets</span>
@@ -177,7 +189,7 @@
 
         <div class="section">
             <div class="section-header">
-                <h2>Total Tickets</h2>
+                <h2>{% if selected_supporter_id %}Assigned Tickets{% else %}Total Tickets{% endif %}</h2>
                 <div class="header-right">
                     <input type="text" id="ticketSearch" placeholder="Search tickets..." class="search-input" onkeyup="filterTickets()">
                     <a href="/create/" class="btn-new">+ New Ticket</a>

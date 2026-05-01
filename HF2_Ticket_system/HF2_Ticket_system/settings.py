@@ -57,7 +57,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'mssql',
         'NAME': 'Knowledge',
-        'HOST': 'DESKTOP-2M4VNAL\\TICKETSYSTEMDBS',
+        'HOST': 'T14G6A116\\MERO',
         'USER': '',
         'PASSWORD': '',
         'OPTIONS': {

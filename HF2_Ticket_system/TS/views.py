@@ -68,12 +68,18 @@ def home(request):
             'users': User.objects.all(),
         }
     else:
+        selected_supporter_id = request.GET.get('supporter_id', '')
+        qs = Ticket.objects.all()
+        if selected_supporter_id:
+            qs = qs.filter(supporter_id=selected_supporter_id)
         context = {
-            'total_tickets': Ticket.objects.count(),
-            'open_tickets': Ticket.objects.filter(status__name='Open').count(),
-            'in_progress_tickets': Ticket.objects.filter(status__name='In Progress').count(),
-            'closed_tickets': Ticket.objects.filter(status__name__in=['Closed', 'Resolved']).count(),
-            'recent_tickets': Ticket.objects.select_related('category', 'priority', 'status').order_by('-created_at')[:10],
+            'total_tickets': qs.count(),
+            'open_tickets': qs.filter(status__name='Open').count(),
+            'in_progress_tickets': qs.filter(status__name='In Progress').count(),
+            'closed_tickets': qs.filter(status__name__in=['Closed', 'Resolved']).count(),
+            'recent_tickets': qs.select_related('category', 'priority', 'status').order_by('-created_at')[:20],
+            'supporters': Supporter.objects.all(),
+            'selected_supporter_id': int(selected_supporter_id) if selected_supporter_id else '',
             **calculate_sla(),
         }
 
