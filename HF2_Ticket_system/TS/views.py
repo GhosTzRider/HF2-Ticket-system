@@ -61,7 +61,7 @@ def home(request):
             qs = Ticket.objects.none()
         context = {
             'total_tickets': qs.count(),
-            'open_tickets': qs.filter(status__name='Open').count(),
+            'open_tickets': qs.filter(status__name__in=['Open', 'Reopen']).count(),
             'in_progress_tickets': qs.filter(status__name='In Progress').count(),
             'closed_tickets': qs.filter(status__name__in=['Closed', 'Resolved']).count(),
             'recent_tickets': qs.select_related('category', 'priority', 'status').order_by('-created_at')[:10],
@@ -74,7 +74,7 @@ def home(request):
             qs = qs.filter(supporter_id=selected_supporter_id)
         context = {
             'total_tickets': qs.count(),
-            'open_tickets': qs.filter(status__name='Open').count(),
+            'open_tickets': qs.filter(status__name__in=['Open', 'Reopen']).count(),
             'in_progress_tickets': qs.filter(status__name='In Progress').count(),
             'closed_tickets': qs.filter(status__name__in=['Closed', 'Resolved']).count(),
             'recent_tickets': qs.select_related('category', 'priority', 'status').order_by('-created_at')[:20],

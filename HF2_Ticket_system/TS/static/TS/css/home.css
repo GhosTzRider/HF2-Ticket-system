@@ -324,6 +324,7 @@ h1 {
 .status-inprogress { background-color: #fff3e0; color: #974200; border-color: #ffcc80; }
 .status-closed     { background-color: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
 .status-resolved   { background-color: #dcedc8; color: #33691e; border-color: #aed581; }
+.status-reopen     { background-color: #f3e8ff; color: #6b21a8; border-color: #d8b4fe; }
 
 /* User mode: user selector */
 .user-select-form {

@@ -273,6 +273,7 @@ h1 {
 .status-inprogress { background-color: #fff3e0; color: #e65100; border-color: #ffcc80; }
 .status-resolved   { background-color: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
 .status-closed     { background-color: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
+.status-reopen     { background-color: #f3e8ff; color: #6b21a8; border-color: #d8b4fe; }
 
 /* Header actions */
 .header-actions {
