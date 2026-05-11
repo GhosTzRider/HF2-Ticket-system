@@ -1,5 +1,6 @@
 import logging
 from datetime import timedelta
+from django.db.models import Case, When, Value, IntegerField, Sum, F, Q
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
@@ -17,32 +18,41 @@ SLA_THRESHOLDS = {
 }
 
 def calculate_sla():
-    tickets = Ticket.objects.select_related('priority', 'status').all()
-    met = 0
-    breached = 0
+    """
+    Compute SLA met/breached counts in a single DB aggregation query.
+    No Python-side iteration over tickets — scales to any volume.
+    """
     now = timezone.now()
+    closed_statuses = ['Closed', 'Resolved']
 
-    for ticket in tickets:
-        threshold = SLA_THRESHOLDS.get(ticket.priority.name.lower())
-        if not threshold:
-            continue
+    whens_met = []
+    whens_breached = []
 
-        if ticket.status.name in ('Closed', 'Resolved'):
-            elapsed = ticket.updated_at - ticket.created_at
-        else:
-            elapsed = now - ticket.created_at
+    for priority, td in SLA_THRESHOLDS.items():
+        p        = Q(priority__name__iexact=priority)
+        is_closed = Q(status__name__in=closed_statuses)
 
-        if elapsed <= threshold:
-            met += 1
-        else:
-            breached += 1
+        # Closed/Resolved: SLA = time from open to close vs threshold
+        whens_met.append(When(p & is_closed  & Q(updated_at__lte=F('created_at') + td), then=Value(1)))
+        whens_breached.append(When(p & is_closed & Q(updated_at__gt=F('created_at') + td),  then=Value(1)))
 
-    total = met + breached
+        # Still open: SLA = time since creation vs threshold
+        whens_met.append(When(p & ~is_closed & Q(created_at__gte=now - td), then=Value(1)))
+        whens_breached.append(When(p & ~is_closed & Q(created_at__lt=now - td),  then=Value(1)))
+
+    result = Ticket.objects.aggregate(
+        met=Sum(Case(*whens_met,      default=Value(0), output_field=IntegerField())),
+        breached=Sum(Case(*whens_breached, default=Value(0), output_field=IntegerField())),
+    )
+
+    met      = result['met']      or 0
+    breached = result['breached'] or 0
+    total    = met + breached
     return {
         'sla_met':          met,
         'sla_breached':     breached,
         'sla_total':        total,
-        'sla_met_pct':      round((met / total) * 100) if total else 0,
+        'sla_met_pct':      round((met      / total) * 100) if total else 0,
         'sla_breached_pct': round((breached / total) * 100) if total else 0,
     }
 
