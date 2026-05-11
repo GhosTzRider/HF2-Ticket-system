@@ -63,6 +63,8 @@ o	tzdata==2026.1
 
 When you have created the database and installed python, and used the cmd to get all the packages, then run the server with this command:
 (python manage.py makemigrations TS
+
 python manage.py migrate
+
  python manage.py runserver).
 
