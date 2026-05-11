@@ -79,7 +79,7 @@ Install python:
 
 •	when you are done open a new powershell and write (py list) to see if you installed python
 
-3.14[-64]  *  Python 3.14.4 *  PythonCore  3.14.4 *  python3[-64].exe, python3.14[-64].exe
+ Python 3.14[-64]  *  Python 3.14.4 *  PythonCore  3.14.4 *  python3[-64].exe, python3.14[-64].exe
 
 
 
