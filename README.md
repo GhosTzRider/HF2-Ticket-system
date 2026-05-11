@@ -21,21 +21,34 @@ dokumentation på de tilhørende tickets.
 
 
 Installationsvejledning:
+
 Version: 2025 of SQL Server Developer
+
 •	[SQL Server Downloads | Microsoft](https://www.microsoft.com/en-us/sql-server/sql-server-downloads?msockid=11e576fbc9586bc62ca161e4c8e46ae8)
+
 o	Then you scroll down to SQL Server 2025 Developer
+
 o	And press on Download Standard Developer edition
+
 Version: 22 of SQL Server Management Studio
+
 •	[Install SQL Server Management Studio | Microsoft Learn](https://learn.microsoft.com/en-us/ssms/install/install)
+
 o	Then You Press on the big blue button called “SQL Server Management Studio 22 installer”
+
 Version: 18 Download Microsoft ODBC Driver for SQL Server (x64)
+
 •	[Download ODBC Driver for SQL Server - ODBC Driver for SQL Server | Microsoft Learn](https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver17&viewFallbackFrom=sql-server-ver18)
+
 o	Scroll down to Download for windows
+
 o	Then press on the blue text called (Download Microsoft ODBC Driver 18 for SQL Server (x64))
+
+
 
 After you have installed all SQL links, then make a Microsoft authentication server in SQL Server 2025 Developer.
  <img width="797" height="478" alt="image" src="https://github.com/user-attachments/assets/2632ac97-9482-4bd8-80cb-d54237b30c77" />
-
+ 
 
 Turn Azure extension for SQL Server Off:
 <img width="1004" height="590" alt="image" src="https://github.com/user-attachments/assets/8b1fa236-4862-453c-8ba9-4120c9869363" />
@@ -55,30 +68,47 @@ Choose the windows authentication mode:
 
 
 Install python:
+
 •	Go in microsoft store in windows
+
 •	search on python
+
 •	find the app called (Python Install Manager)
+
 •	after download, open it and begin the installation
+
 •	when you are done open a new powershell and write (py list) to see if you installed python
 
 
 
 Requirements:
+
 •	To Install the packages use this command.
+
 •	pip freeze > requirements.txt
+
 o	asgiref==3.11.1
+
 o	concurrent-log-handler==0.9.29
+
 o	Django==6.0.4
+
 o	mssql-django==1.7
+
 o	portalocker==3.2.0
+
 o	pyodbc==5.3.0
+
 o	pytz==2026.1.post1
+
 o	pywin32==311
+
 o	sqlparse==0.5.5
+
 o	tzdata==2026.1
 
 
 When you have created the database and installed python, and used the cmd to get all the packages, then run the server with this command in order:
+
 python manage.py makemigrations TS / python manage.py migrate / python manage.py runserver
 
-•	python manage.py runserver.
