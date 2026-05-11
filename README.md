@@ -21,6 +21,7 @@ dokumentation på de tilhørende tickets.
 
 
 Install python:
+
 •	Go in microsoft store in windows
 •	search on python
 •	find the app called (Python Install Manager)
@@ -30,6 +31,7 @@ Install python:
 
 
 Requirements:
+
 •	To Install the packages use this command.
 •	pip freeze > requirements.txt
 o	asgiref==3.11.1
