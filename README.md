@@ -40,7 +40,7 @@ Version: 18 Download Microsoft ODBC Driver for SQL Server (x64)
 
 •	[Download ODBC Driver for SQL Server - ODBC Driver for SQL Server | Microsoft Learn](https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver17&viewFallbackFrom=sql-server-ver18)
 
-o	Scroll down to Download for windows
+o	Scroll down to (Download for windows)
 
 o	Then press on the blue text called (Download Microsoft ODBC Driver 18 for SQL Server (x64))
 
@@ -78,6 +78,8 @@ Install python:
 •	after download, open it and begin the installation
 
 •	when you are done open a new powershell and write (py list) to see if you installed python
+
+ Python 3.14[-64]  *  Python 3.14.4 *  PythonCore  3.14.4 *  python3[-64].exe, python3.14[-64].exe
 
 
 
