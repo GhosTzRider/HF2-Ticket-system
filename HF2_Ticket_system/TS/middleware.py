@@ -18,7 +18,7 @@ class TicketRateLimitMiddleware:
     WINDOW = 60   # rolling window in seconds
 
     _buckets: dict = defaultdict(list)
-    _lock: Lock    = Lock()
+    _lock: Lock = Lock()
 
     def __init__(self, get_response):
         self.get_response = get_response
