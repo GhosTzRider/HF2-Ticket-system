@@ -40,7 +40,7 @@ Version: 18 Download Microsoft ODBC Driver for SQL Server (x64)
 
 •	[Download ODBC Driver for SQL Server - ODBC Driver for SQL Server | Microsoft Learn](https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver17&viewFallbackFrom=sql-server-ver18)
 
-o	Scroll down to Download for windows
+o	Scroll down to (Download for windows)
 
 o	Then press on the blue text called (Download Microsoft ODBC Driver 18 for SQL Server (x64))
 
